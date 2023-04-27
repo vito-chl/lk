@@ -5,6 +5,11 @@ MODULE := $(LOCAL_DIR)
 MODULE_CFLAGS += -Wno-unused-variable -Wno-sign-compare -Wno-parentheses -Wno-double-promotion -Wno-maybe-uninitialized
 MODULE_OPTIONS := float
 
+ifneq (true,$(call TOBOOL,$(WITH_RUST)))
+MODULE_SRCS += \
+	$(LOCAL_DIR)/e_fmod.c
+endif
+
 MODULE_SRCS += \
 	$(LOCAL_DIR)/k_sin.c \
 	$(LOCAL_DIR)/s_sin.c \
@@ -32,7 +37,6 @@ MODULE_SRCS += \
 	$(LOCAL_DIR)/e_powf.c \
 	$(LOCAL_DIR)/s_fabs.c \
 	$(LOCAL_DIR)/s_fabsf.c \
-	$(LOCAL_DIR)/e_fmod.c \
 	$(LOCAL_DIR)/e_log.c \
 	$(LOCAL_DIR)/e_exp.c \
 	$(LOCAL_DIR)/s_round.c \
